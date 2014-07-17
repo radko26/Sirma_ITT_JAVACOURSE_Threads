@@ -15,13 +15,18 @@ public class CounterTest {
 
 	/**
 	 * Sets the limit of the counter to small number and checks.
+	 * @throws InterruptedException 
 	 */
 	@Test
-	public void testGetCounterWithSmallLimit() {
+	public void testGetCounterWithSmallLimit(){
 		counter = new Counter(100000l);
 		counter.start();
-		for (long i = 0; i < (long) (Math.random() * 1000000l) + 100000000l; i++)
-			;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		counter.stopExecuting();
 		assertEquals(100000l, counter.getCounter());
 	}
@@ -34,8 +39,10 @@ public class CounterTest {
 	public void testGetCounterWithLargeLimit() {
 		counter = new Counter(100000000000l);
 		counter.start();
-		for (long i = 0; i < (long) (Math.random() * 1000000l) + 100000000l; i++)
-			;
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 		counter.stopExecuting();
 		assertTrue(counter.getCounter() < 100000000000l);
 	}
