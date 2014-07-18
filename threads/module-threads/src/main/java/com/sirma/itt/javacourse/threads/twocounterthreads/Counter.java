@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author radoslav
  */
 public class Counter extends Thread {
+	private static final LOG = LoggerFactory.getLogger(Counter.class);
 	private long upperBound;
 	private long lowerBound;
 	private AtomicBoolean running;
@@ -31,11 +32,10 @@ public class Counter extends Thread {
 
 	@Override
 	public void run() {
-		for (; lowerBound < upperBound && running.get(); lowerBound++)
-			;
+		for (; lowerBound < upperBound && running.get(); lowerBound++){
+			LOG.info(this.getName() + " " + lowerBound;
+		}
 
 		running.set(false);
-
-		System.out.println(this.getName() + " " + lowerBound);
 	}
 }
